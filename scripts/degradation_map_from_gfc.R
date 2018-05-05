@@ -7,34 +7,26 @@
 ####################################################################################################
 time_start <- Sys.time() 
 
-root_dir <- "/media/dannunzio/OSDisk/Users/dannunzio/Documents/countries/liberia/data/"
-setwd(root_dir)
-
-dd_dir <- paste0(root_dir,"dd_map/")
-seg_dir  <- paste0(root_dir,"segments/")
 
 #################### GFC PRODUCTS
 gfc_threshold <- 30
 
-gfc_tc       <- paste0(root_dir,"gfc_2016/gfc_lib_th",gfc_threshold,"_tc.tif")
-gfc_ly       <- paste0(root_dir,"gfc_2016/gfc_lib_th",gfc_threshold,"_ly.tif")
-gfc_gn       <- paste0(root_dir,"gfc_2016/gfc_lib_gain.tif")
-gfc_16       <- paste0(root_dir,"gfc_2016/gfc_lib_th",gfc_threshold,"_F_2016.tif")
-
-#################### GEOVILLE MAP
-map_14       <- paste0(root_dir,"FDA_data/Geoville_map/Liberia_landcover_forest_map_10m_v1.tif")       
+gfc_tc       <- paste0(gfc_dir,"gfc_khm_th",gfc_threshold,"_tc.tif")
+gfc_ly       <- paste0(gfc_dir,"gfc_khm_th",gfc_threshold,"_ly.tif")
+gfc_gn       <- paste0(gfc_dir,"gfc_khm_gain.tif")
+gfc_16       <- paste0(gfc_dir,"gfc_khm_th",gfc_threshold,"_F_2016.tif")
 
 #################### CREATE GFC TREE COVER MAP in 2000 AT THRESHOLD
 system(sprintf("gdal_calc.py -A %s --co COMPRESS=LZW --outfile=%s --calc=\"%s\"",
-               paste0(root_dir,"gfc_2016/gfc_lib_treecover2000.tif"),
+               paste0(gfc_dir,"gfc_khm_treecover2000.tif"),
                gfc_tc,
                paste0("(A>",gfc_threshold,")*A")
 ))
 
 #################### CREATE GFC TREE COVER MAP AT THRESHOLD
 system(sprintf("gdal_calc.py -A %s -B %s --co COMPRESS=LZW --outfile=%s --calc=\"%s\"",
-               paste0(root_dir,"gfc_2016/gfc_lib_treecover2000.tif"),
-               paste0(root_dir,"gfc_2016/gfc_lib_lossyear.tif"),
+               paste0(gfc_dir,"gfc_khm_treecover2000.tif"),
+               paste0(gfc_dir,"gfc_khm_lossyear.tif"),
                gfc_ly,
                paste0("(A>",gfc_threshold,")*B")
 ))
@@ -48,7 +40,7 @@ system(sprintf("gdal_calc.py -A %s -B %s -C %s --co COMPRESS=LZW --outfile=%s --
                "(C==1)*2+(C==0)*((B==0)*(A>0)*2+(B==0)*(A==0)*1+(B>0)*0)"
 ))
 
-#################### CREATE A COLR TABLE FOR THE OUTPUT MAP
+#################### CREATE A COLOR TABLE FOR THE OUTPUT MAP
 my_classes <- c(0,1,2,3,4)
 my_colors  <- col2rgb(c("black","grey","darkgreen","red","orange"))
 
@@ -124,35 +116,21 @@ for(i in 1:length(list_tiles)){
   ))
   
 
-  #################### ALIGN GEOVILLE MAP WITH SEGMENTS
-  input  <- map_14
-  ouput  <- paste0(dd_dir,"tmp_lcmap_tile.tif")
-
-  system(sprintf("gdalwarp -co COMPRESS=LZW -t_srs \"%s\" -te %s %s %s %s -tr %s %s %s %s -overwrite",
-                 proj4string(raster(mask)),
-                 extent(raster(mask))@xmin,
-                 extent(raster(mask))@ymin,
-                 extent(raster(mask))@xmax,
-                 extent(raster(mask))@ymax,
-                 res(raster(mask))[1],
-                 res(raster(mask))[2],
-                 input,
-                 ouput
-  ))
-  
-  
   ####################################################################################################
   #################### DECISION TREE 
   ####################################################################################################
-
-  #################### ZONAL FOR LC GEOVILLE MAP
+  
+  
+  #################### ZONAL FOR THE DATA MASK
   system(sprintf("oft-his -i %s -o %s -um %s -maxval %s",
-                 paste0(dd_dir,"tmp_lcmap_tile.tif"),
-                 paste0(dd_dir,"stat_lcmap_tile.txt"),
+                 paste0(seg_dir,"mask_mosaic_tile",i,".tif"),
+                 paste0(dd_dir,"stat_mask_tile.txt"),
                  the_segments,
-                 25
+                 1
   ))
   
+  
+
   #################### ZONAL FOR GFC TREECOVER
   system(sprintf("oft-his -i %s -o %s -um %s -maxval %s",
                  paste0(dd_dir,"tmp_tc_tile.tif"),
@@ -181,19 +159,16 @@ for(i in 1:length(list_tiles)){
   df_gfc_tc  <- read.table(paste0(dd_dir,"stat_tc_tile.txt"))
   df_gfc_ly  <- read.table(paste0(dd_dir,"stat_ly_tile.txt"))
   df_gfc_16  <- read.table(paste0(dd_dir,"stat_f16_tile.txt"))
-  df_lcmap   <- read.table(paste0(dd_dir,"stat_lcmap_tile.txt"))
+  df_mask    <- read.table(paste0(dd_dir,"stat_mask_tile.txt"))
   
   names(df_gfc_tc)  <- c("clump_id","total_gfc_tc",paste0("tc_",0:100))
   names(df_gfc_ly)  <- c("clump_id","total_gfc_ly",paste0("ly_",0:16))
   names(df_gfc_16)  <- c("clump_id","total_gfc_gn",paste0("gn_",0:2))
-  names(df_lcmap )  <- c("clump_id","total_gfc_lc",paste0("lc_",0:25))
+  names(df_mask)    <- c("clump_id","total_mask",paste0("msk_",0:1))
   
   head(df_gfc_16)
   ####### INITIATE THE OUT DATAFRAME
   df <- df_gfc_tc[,c("clump_id","total_gfc_tc")]
-  
-  ####### CALCULATE MAJORITY CLASS FOR EACH THEMATIC PRODUCT
-  df$mode_lc <- c(0:25)[max.col(df_lcmap[,paste0("lc_",0:25)])]
   
   ####### SETUP THE OUTPUT
   df$ddclass  <- 0 
@@ -220,7 +195,7 @@ for(i in 1:length(list_tiles)){
   
   ####### NO DATA == 0
   tryCatch({
-    df[df_lcmap$lc_0 > 0  , ]$ddclass <- 0
+    df[df_mask$msk_0 > 0  , ]$ddclass <- 0
   },error=function(e){cat("Not relevant\n")})
   
   table(df$ddclass)

@@ -16,10 +16,6 @@ library(rgdal)
 library(raster)
 
 
-## Select the folder where your GFC data archives are stored
-gfc_folder    <-  "/media/dannunzio/lecrabe/gis_data/gfc_hansen_umd/gfc_2016/"
-dir.create(gfc_folder)
-
 ## Country code
 countrycode <- c("KHM")
 
@@ -28,7 +24,7 @@ countrycode <- c("KHM")
 #######################################################################
 ### Make vector layer of tiles that cover the country
 aoi             <- getData('GADM',
-                           path=gfc_folder, 
+                           path=gfc_dir, 
                            country= countrycode, 
                            level=0)
 tiles           <- calc_gfc_tiles(aoi)
@@ -122,6 +118,6 @@ download_gfc_2016 <- function (tiles, output_folder, images = c("treecover2000",
 ### Check if tiles are available and download otherwise : download can take some time
 beginCluster()
 download_gfc_2016(tiles,
-                  gfc_folder,
+                  gfc_dir,
                   images = c("treecover2000","lossyear","gain","datamask"))
 endCluster()
