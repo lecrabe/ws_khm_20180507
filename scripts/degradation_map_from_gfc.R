@@ -247,7 +247,7 @@ time_decision_tree <- Sys.time() - time_start
 #############################################################
 ### MERGE AS VRT
 system(sprintf("gdalbuildvrt %s %s",
-               paste0(dd_dir,"dd_map_liberia.vrt"),
+               paste0(dd_dir,"dd_map.vrt"),
                paste0(dd_dir,"tile_*_decision_tree.tif")
 ))
 
@@ -255,7 +255,7 @@ system(sprintf("gdalbuildvrt %s %s",
 #################### Add pseudo color table to result
 system(sprintf("(echo %s) | oft-addpct.py %s %s",
                paste0(dd_dir,"color_table.txt"),
-               paste0(dd_dir,"dd_map_liberia.vrt"),
+               paste0(dd_dir,"dd_map.vrt"),
                paste0(dd_dir,"tmp_merge_pct.tif")
 ))
 
@@ -263,7 +263,7 @@ system(sprintf("(echo %s) | oft-addpct.py %s %s",
 #################### COMPRESS
 system(sprintf("gdal_translate -ot Byte -co COMPRESS=LZW %s %s",
                paste0(dd_dir,"tmp_merge_pct.tif"),
-               paste0(dd_dir,"dd_map_liberia.tif")
+               paste0(dd_dir,"dd_map.tif")
 ))
 
 #############################################################
