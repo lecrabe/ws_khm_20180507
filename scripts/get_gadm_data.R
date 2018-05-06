@@ -39,7 +39,8 @@ sub_aoi <- aoi[aoi$NAME_4 == "Samret",]
 plot(getData('GADM',path=gadm_dir , country= countrycode, level=1))
 plot(sub_aoi,add=T,col="red")
 
+sub_aoi@data <- sub_aoi@data[,c("OBJECTID","ISO")]
 writeOGR(sub_aoi,paste0(gadm_dir,"work_aoi.kml"),"work_aoi","KML",overwrite_layer = T)
 
 ## Load inside Google Drive as a Fusion Table and note that FT ID
-my_fusion_table_id <- "1Qv9dd4aLQolIiaa6RPSX86C2GxisiYE6G8AMUxYS"
+my_fusion_table_id <- "1EiIBGwFKpZrlItVgkM01c4AOQ5Ms-MhIB8kbatBk"
