@@ -25,7 +25,7 @@ params <- c(3,   # radius of smoothing (pixels)
             5)  # segment minimum size (pixels)
 
 tiles <- list.files(lsat_dir,pattern=glob2rx("*mosaic*.tif"))
-i
+
 for(i in 1:length(tiles)){
   input <- tiles[i]
   system(sprintf("otbcli_MeanShiftSmoothing -in %s -fout %s -foutpos %s -spatialr %s -ranger %s -thres %s -maxiter %s",
