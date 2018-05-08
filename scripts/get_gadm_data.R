@@ -30,16 +30,25 @@ writeOGR(aoi,
          "ESRI Shapefile",
          overwrite_layer = T)
 
+aoi_4kml <- aoi
+aoi_4kml@data <- aoi_4kml@data[,c("OBJECTID","ISO","NAME_4")]
+
+writeOGR(aoi_4kml,
+         paste0(gadm_dir,"gadm_",countrycode,"l4.kml"),
+         paste0("gadm_",countrycode,"l4"),
+         "KML",
+         overwrite_layer = T)
+
+
+
 ## Select one province and export as KML
 #sub_aoi <- aoi[aoi$NAME_4 == "Samret",]
 sub_aoi <- aoi[aoi$NAME_4 == "Khyov",]
+sub_aoi <- aoi[aoi$NAME_4 == "Pa Kalan",]
 
 plot(getData('GADM',path=gadm_dir , country= countrycode, level=1))
 plot(sub_aoi,add=T,col="red")
 
 sub_aoi@data <- sub_aoi@data[,c("OBJECTID","ISO")]
-writeOGR(sub_aoi,paste0(gadm_dir,"work_aoi_khyov.kml"),"work_aoi_khyov","KML",overwrite_layer = T)
+writeOGR(sub_aoi,paste0(gadm_dir,"work_aoi_pa_kalan.kml"),"work_aoi_pa_kalan","KML",overwrite_layer = T)
 
-## Load inside Google Drive as a Fusion Table and note that FT ID
-#my_fusion_table_id <- "1EiIBGwFKpZrlItVgkM01c4AOQ5Ms-MhIB8kbatBk"
-my_fusion_table_id <- "1Y9AxDnjeTKpHrmnNRsT9wnZOumb8vX9vccc-l-Ik"
