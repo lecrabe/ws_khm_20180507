@@ -8,37 +8,6 @@
 time_start <- Sys.time() 
 
 
-#################### GFC PRODUCTS
-gfc_threshold <- 30
-
-gfc_tc       <- paste0(gfc_dir,"gfc_khm_th",gfc_threshold,"_tc.tif")
-gfc_ly       <- paste0(gfc_dir,"gfc_khm_th",gfc_threshold,"_ly.tif")
-gfc_gn       <- paste0(gfc_dir,"gfc_khm_gain.tif")
-gfc_16       <- paste0(gfc_dir,"gfc_khm_th",gfc_threshold,"_F_2016.tif")
-
-#################### CREATE GFC TREE COVER MAP in 2000 AT THRESHOLD
-system(sprintf("gdal_calc.py -A %s --co COMPRESS=LZW --outfile=%s --calc=\"%s\"",
-               paste0(gfc_dir,"gfc_khm_treecover2000.tif"),
-               gfc_tc,
-               paste0("(A>",gfc_threshold,")*A")
-))
-
-#################### CREATE GFC TREE COVER MAP AT THRESHOLD
-system(sprintf("gdal_calc.py -A %s -B %s --co COMPRESS=LZW --outfile=%s --calc=\"%s\"",
-               paste0(gfc_dir,"gfc_khm_treecover2000.tif"),
-               paste0(gfc_dir,"gfc_khm_lossyear.tif"),
-               gfc_ly,
-               paste0("(A>",gfc_threshold,")*B")
-))
-
-#################### CREATE GFC TREE COVER MAP in 2016 AT THRESHOLD (0 nodata, 1 no forest, 2 forest)
-system(sprintf("gdal_calc.py -A %s -B %s -C %s --co COMPRESS=LZW --outfile=%s --calc=\"%s\"",
-               gfc_tc,
-               gfc_ly,
-               gfc_gn,
-               gfc_16,
-               "(C==1)*2+(C==0)*((B==0)*(A>0)*2+(B==0)*(A==0)*1+(B>0)*0)"
-))
 
 #################### CREATE A COLOR TABLE FOR THE OUTPUT MAP
 my_classes <- c(0,1,2,3,4)

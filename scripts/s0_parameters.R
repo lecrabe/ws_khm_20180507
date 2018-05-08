@@ -22,7 +22,7 @@ rootdir <- paste0(getwd(),"/")
 
 data_dir <- paste0(rootdir,"data/")
 
-gfcstore_dir  <- paste0(rootdir,"downloads/gfc_2016/")
+gfcstore_dir  <- paste0("~/downloads/gfc_2016/")
 gadm_dir <- paste0(rootdir,"data/gadm/")
 gfc_dir  <- paste0(rootdir,"data/gfc/")
 lsat_dir <- paste0(rootdir,"data/mosaic_lsat/")
@@ -30,7 +30,11 @@ seg_dir  <- paste0(rootdir,"data/segments/")
 dd_dir   <- paste0(rootdir,"data/dd_map/")
 
 dir.create(gadm_dir,showWarnings = F)
+dir.create(gfcstore_dir,showWarnings = F)
 dir.create(gfc_dir,showWarnings = F)
 dir.create(lsat_dir,showWarnings = F)
 dir.create(seg_dir,showWarnings = F)
 dir.create(dd_dir,showWarnings = F)
+
+#################### GFC PRODUCTS
+gfc_threshold <- 30
