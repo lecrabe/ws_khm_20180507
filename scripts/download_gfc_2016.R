@@ -24,7 +24,7 @@ countrycode <- c("KHM")
 #######################################################################
 ### Make vector layer of tiles that cover the country
 aoi             <- getData('GADM',
-                           path=gfc_dir, 
+                           path=gfcstore_dir, 
                            country= countrycode, 
                            level=0)
 tiles           <- calc_gfc_tiles(aoi)
@@ -118,6 +118,6 @@ download_gfc_2016 <- function (tiles, output_folder, images = c("treecover2000",
 ### Check if tiles are available and download otherwise : download can take some time
 beginCluster()
 download_gfc_2016(tiles,
-                  gfc_dir,
+                  gfcstore_dir,
                   images = c("treecover2000","lossyear","gain","datamask"))
 endCluster()

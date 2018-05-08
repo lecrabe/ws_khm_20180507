@@ -22,6 +22,7 @@ rootdir <- paste0(getwd(),"/")
 
 data_dir <- paste0(rootdir,"data/")
 
+gfcstore_dir  <- paste0(rootdir,"downloads/gfc_2016/")
 gadm_dir <- paste0(rootdir,"data/gadm/")
 gfc_dir  <- paste0(rootdir,"data/gfc/")
 lsat_dir <- paste0(rootdir,"data/mosaic_lsat/")
