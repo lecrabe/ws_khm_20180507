@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="tile_remi.kml" id="tile_remi.kml">
+	<SimpleField name="tileID" type="string"></SimpleField>
+	<SimpleField name="operator" type="string"></SimpleField>
+</Schema>
+<Folder><name>tile_remi.kml</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#tile_remi.kml">
+		<SimpleData name="tileID">299</SimpleData>
+		<SimpleData name="operator">remi</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>102.808480057492,12.4251024074739 102.808480057492,12.6047646424722 102.98814229249,12.6047646424722 102.98814229249,12.4251024074739 102.808480057492,12.4251024074739</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="tile_dorang.kml" id="tile_dorang.kml">
+	<SimpleField name="tileID" type="string"></SimpleField>
+	<SimpleField name="operator" type="string"></SimpleField>
+</Schema>
+<Folder><name>tile_dorang.kml</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#tile_dorang.kml">
+		<SimpleData name="tileID">143</SimpleData>
+		<SimpleData name="operator">dorang</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>106.401724757456,13.5030758174632 106.401724757456,13.6827380524614 106.581386992454,13.6827380524614 106.581386992454,13.5030758174632 106.401724757456,13.5030758174632</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

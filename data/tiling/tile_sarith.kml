@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="tile_sarith.kml" id="tile_sarith.kml">
+	<SimpleField name="tileID" type="string"></SimpleField>
+	<SimpleField name="operator" type="string"></SimpleField>
+</Schema>
+<Folder><name>tile_sarith.kml</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#tile_sarith.kml">
+		<SimpleData name="tileID">348</SimpleData>
+		<SimpleData name="operator">sarith</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>106.581386992454,12.2454401724757 106.581386992454,12.425102407474 106.761049227452,12.425102407474 106.761049227452,12.2454401724757 106.581386992454,12.2454401724757</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

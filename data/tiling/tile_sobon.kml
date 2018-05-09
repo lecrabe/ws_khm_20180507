@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="tile_sobon.kml" id="tile_sobon.kml">
+	<SimpleField name="tileID" type="string"></SimpleField>
+	<SimpleField name="operator" type="string"></SimpleField>
+</Schema>
+<Folder><name>tile_sobon.kml</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#tile_sobon.kml">
+		<SimpleData name="tileID">88</SimpleData>
+		<SimpleData name="operator">sobon</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>106.940711462451,13.8624002874596 106.940711462451,14.0420625224578 107.120373697449,14.0420625224578 107.120373697449,13.8624002874596 106.940711462451,13.8624002874596</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>
