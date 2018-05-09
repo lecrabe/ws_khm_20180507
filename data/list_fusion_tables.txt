@@ -2,3 +2,16 @@ TF_ID Samret     : 1EiIBGwFKpZrlItVgkM01c4AOQ5Ms-MhIB8kbatBk
 TF_ID Khyov      : 1Y9AxDnjeTKpHrmnNRsT9wnZOumb8vX9vccc-l-Ik
 TF_ID Pa Kalan   : 1atQA8ITpn2fbDa3HSnrNi0SYuusiKr0okdJCS_pZ
 TF_ID All Level4 : 1gaWfYKkmBbjfzHXE_mMajrAvvJECH22_1M7VED66
+
+ [1,] "All - History - Khyov"          "Sam"      
+ [2,] "ROC - History - Khyov"          "Sophyra"  
+ [3,] "All - History+Trend - Khyov"    "Pin"      
+ [4,] "ROC - History+Trend - Khyov"    "Sophana"  
+ [5,] "All - History - Pa Kalan"       "Sobun"    
+ [6,] "ROC - History - Pa Kalan"       "Sarith"   
+ [7,] "All - History+Trend - Pa Kalan" "Remi"     
+ [8,] "ROC - History+Trend - Pa Kalan" "Naborey"  
+ [9,] "All - History - Khyov"          "Phyrum"   
+[10,] "ROC - History - Khyov"          "Khidorang"
+[11,] "All - History+Trend - Khyov"    "Bunreth"  
+[12,] "ROC - History+Trend - Khyov"    "Chealy"
