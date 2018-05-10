@@ -30,7 +30,7 @@ for(type in types){
   to_merge <- paste(prefix,type,"_",tilesx,".tif",sep = "")
   system(sprintf("gdal_merge.py -o %s -v -co COMPRESS=LZW %s",
                  paste0(gfc_dir,"tmp_merge_",type,".tif"),
-                 paste0(gfc_dir,to_merge,collapse = " ")
+                 paste0(gfcstore_dir,to_merge,collapse = " ")
                  ))
 
   system(sprintf("gdal_translate -ot Byte -projwin %s %s %s %s -co COMPRESS=LZW %s %s",
