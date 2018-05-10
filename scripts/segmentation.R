@@ -24,7 +24,7 @@ params <- c(3,   # radius of smoothing (pixels)
             50,  # iterations of algorithm
             5)  # segment minimum size (pixels)
 
-tiles <- list.files(lsat_dir,pattern=glob2rx("*mosaic*.tif"))
+tiles <- list.files(lsat_dir,pattern=glob2rx("*.tif"))
 
 for(i in 1:length(tiles)){
   input <- tiles[i]
