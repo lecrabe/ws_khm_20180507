@@ -1,6 +1,6 @@
 ####################################################################################################
 ## Segmentation of the mosaic
-## remi.dannunzio@fao.org & rashed.jalal@fao.org
+## remi.dannunzio@fao.org
 ## 2018/02/05
 ####################################################################################################
 ####################################################################################################
@@ -67,8 +67,8 @@ for(i in 1:length(tiles)){
 
 
 
-######################### POLYGONIZE
-system(sprintf("gdal_polygonize.py -f \"ESRI Shapefile\" %s %s",
-               paste0(seg_dir,"seg_lsms_tile_1_param_",paste0(params,collapse = "_"),".tif"),
-               paste0(seg_dir,"seg_lsms_tile_1_",paste0(params,collapse = "_"),".shp")
-))
+# ######################### POLYGONIZE
+# system(sprintf("gdal_polygonize.py -f \"ESRI Shapefile\" %s %s",
+#                paste0(seg_dir,"seg_lsms_tile_1_param_",paste0(params,collapse = "_"),".tif"),
+#                paste0(seg_dir,"seg_lsms_tile_1_",paste0(params,collapse = "_"),".shp")
+# ))
