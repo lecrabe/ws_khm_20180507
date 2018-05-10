@@ -17,6 +17,7 @@ packages <- function(x){
   }
 }
 packages(gfcanalysis)
+packages(Hmisc)
 
 ### Load necessary packages
 library(raster)

@@ -6,14 +6,7 @@
 ####################################################################################################
 options(stringsAsFactors=FALSE)
 
-library(Hmisc)
-library(sp)
-library(rgdal)
-library(raster)
-library(plyr)
-library(foreign)
-library(rgeos)
-library(glcm)
+
 
 workdir <- lsat_dir
 
@@ -55,7 +48,7 @@ for(i in 1:length(tiles)){
   ))
   
   #################### CREATE GFC TREE COVER MAP in 2016 AT THRESHOLD (0 nodata, 1 no forest, 2 forest)
-  system(sprintf("gdal_calc.py -A %s --co COMPRESS=LZW --outfile=%s --calc=\"%s\"",
+  system(sprintf("gdal_calc.py -A %s --co COMPRESS=LZW --overwrite --outfile=%s --calc=\"%s\"",
                  paste0(workdir,input),
                  paste0(seg_dir,"mask_mosaic_tile",i,".tif"),
                  "(A>0)"
