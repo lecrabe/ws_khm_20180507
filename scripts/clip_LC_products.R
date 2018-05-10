@@ -20,7 +20,7 @@ bb <- extent(aoi)
 setwd(gfc_dir)
 
 prefix <- "Hansen_GFC-2016-v1.4_"
-tiles <- list.files(gfc_dir,pattern=glob2rx("*datamask*100E.tif"))
+tiles <- list.files(gfcstore_dir,pattern=glob2rx("*datamask*100E.tif"))
 tilesx <- substr(tiles,31,38)
 
 types <- c("treecover2000","lossyear","gain","datamask")
