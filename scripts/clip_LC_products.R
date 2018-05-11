@@ -49,11 +49,7 @@ system(sprintf("rm %s",
 }
 
 
-#################### CREATE GFC PRODUCTS AT THE THRESHOLD
-gfc_tc       <- paste0(gfc_dir,"gfc_khm_th",gfc_threshold,"_tc.tif")
-gfc_ly       <- paste0(gfc_dir,"gfc_khm_th",gfc_threshold,"_ly.tif")
-gfc_gn       <- paste0(gfc_dir,"gfc_khm_gain.tif")
-gfc_16       <- paste0(gfc_dir,"gfc_khm_th",gfc_threshold,"_F_2016.tif")
+
 
 #################### CREATE GFC TREE COVER MAP in 2000 AT THRESHOLD
 system(sprintf("gdal_calc.py -A %s --co COMPRESS=LZW --outfile=%s --calc=\"%s\"",
