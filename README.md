@@ -12,4 +12,4 @@ Access to SEPAL @ https://sepal.io
 ### Cambodia workshop 07-11 May 2018
 The material in this repository was developed during a technical workshop held in Phnom Penh Cambodia with MoE and MAFF.
 
-![Alt text](/media/dannunzio/OSDisk/Users/dannunzio/Documents/countries/cambodia/workshop_20180507/presentations/photo_group.jpeg?raw=true "Optional Title")
+![Alt text](/presentations/photo_group.jpeg?raw=true "Optional Title")
